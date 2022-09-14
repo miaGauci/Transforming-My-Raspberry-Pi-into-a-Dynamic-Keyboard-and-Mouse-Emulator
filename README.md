@@ -27,6 +27,8 @@ Difference between == and is operator
 Working with JSON 
 ```
 import json 
+
+from typing import Union !! research
 ```
 JSON -> Python 
 ```
