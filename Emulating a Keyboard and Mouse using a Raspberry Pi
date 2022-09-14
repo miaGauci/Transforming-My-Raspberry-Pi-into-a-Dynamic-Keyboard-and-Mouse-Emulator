@@ -1,2 +1,11 @@
 Emulating a Keyboard and Mouse using a Raspberry Pi 
 ..
+
+For reference go to: [https://github.com/thewh1teagle/zero-hid/tree/main/zero_hid]
+
+Information about USB mouse codes and connections;
+[https://wiki.osdev.org/Mouse_Input]
+Note: Every mouse when connected to a new device configures differently in its own way
+  To find the hex codes that a mouse button sends when it is clicked; 
+  Go to terminal and enter: **sudo usbhid-dump --entity=all**
+
