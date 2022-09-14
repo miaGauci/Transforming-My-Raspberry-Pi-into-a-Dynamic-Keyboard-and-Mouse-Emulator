@@ -3,9 +3,62 @@ Emulating a Keyboard and Mouse using a Raspberry Pi
 
 For reference go to: [https://github.com/thewh1teagle/zero-hid/tree/main/zero_hid]
 
+When doing this project make sure that; 
+- The files downloaded from the above link are calling the right classes 
+  - by that I mean that it calls class 'Mouse' or 'Keyboard' 
+  - these classes are of another python version (as per download) hence some methods are not found
+  - because python calls the classes pre downloaded on it which can't be edited 
+  - to see which class it is calling use the 'dir' function 
+
 Information about USB mouse codes and connections;
 [https://wiki.osdev.org/Mouse_Input]
 Note: Every mouse when connected to a new device configures differently in its own way
   To find the hex codes that a mouse button sends when it is clicked; 
   Go to terminal and enter: **sudo usbhid-dump --entity=all**
 
+Now
+We know that these hex codes are obv in fact binary 
+Binary represenation of usb mouse; 
+Y overflow : X overflow : Y sign bit : X sign bit : Always 1 : Middle btn : Right btn : Left btn
+
+Now the universal codes of the mouse are; 
+Left btn : 0x01
+Right btn : 0x02
+Middle btn (scroll) : 0x04
+
+!!!!
+When you look at the binary rep of the usb mouse you can see where the binary bit fits and its hex representation 
+
+Example we can see that the middle button is 0000100 ie 0x04
+
+Now from the code snippet obtained from the link above 
+```
+send_mouse_event(self.dev, 0x0, 0, 0, 0, 0)
+```
+We can see that there are only 5 hex positions; 
+\x(Button)\x(X Pos)\x(Y Pos)\x(Scroll Wheel)
+However in our case we have another 0 
+Note: the last 0 is for a mouse which would have a side scroll (yes they exist)
+
+Now when it comes to **scrolling**
+Scrolling coordinates are from 1 -> 255 
+255 represented in hex is FF ie 
+ScrollUp is 0x01 
+ScrollDown is 0xFF
+
+To clear mouse commands make sure to enter a delay using 'import time'
+  0x0 is the hex to clear any buttons pressed 
+  
+Make sure that when you press a button you enter 0x0 to clear the command or else it will stay pressed 
+
+```
+def __init__(self):
+  super().__init__()
+
+def left_click(self):
+#Note we still add the last 0 although it is unneccassary since the pi is programmed like that and it expects an input for that bit
+  send_mouse_event(self.dev, 0x01, 0, 0, 0, 0)
+  #__delay is initialised at the top
+  time.sleep(__delay)
+  
+```
