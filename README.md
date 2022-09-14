@@ -16,6 +16,11 @@ myfirstmodule.printsmth()
 #Output ;
 #Hiya:)
 ```
+
+- __ is used to create a local variable to the class 
+
+Example: __delay; is only local to the class it is initialised if called from another class it is not found 
+
 ## if __name__ == "__main__":
 - tells the program that the code inside this if statement should only be executed if the program is executed as a standalone program 
 - If the class containing this line is called from another program the lines of code under if __name__ == "__main__": will not be executed 
@@ -50,6 +55,8 @@ A double underscore variable in Python is usually referred to as a dunder
   - python uses these variables in a 'special way'
 
 The __init__ method for initialization is invoked when an instance of a class is created 
+
+__init__ is a **constructor**
 
 ```
 #Prints only the memory address of the string object 
@@ -150,8 +157,92 @@ stud2 = Students(2, 12)
 print(stud2)
 
 ```
-Syntax: super()
+### Syntax: super()
 
 Return : Return a proxy object which represents the parent’s class.
+
+#### First let us understand how inheritance in Python works 
+Creating a Parent Class 
+```
+#Creating a Person class with Display methods 
+
+# In Python 3.x "class Person" is
+# equivalent to "class Person(object)"
+class Person(object):
+
+	#constructor of class 
+	def __init__(self, name, id)
+		self.name = name 
+		self.id = id 
+		
+	#To check if the person is an employee 
+	def Display(self):
+		print(self.name, self.id)
+		
+	#Driver code 
+	emp = Person("Mia", 102) #An object of a Person 
+	emp.Display()
+```
+Creating a Child Class
+
+```
+class Emp(Person):
+	 def Print(self):
+	 	print("Emp class called:")
+	Emp_details = Emp("Amy", 103)
+	
+	#calling the parent class function 
+	Emp_details.Display()
+	
+	#calling child class function 
+	Emp_details.Print()
+```
+
+Now
+
+In an inherited subclass, a parent class can be referred with the used of the **super()** function. The super function returns a temporary object of the superclass that allows access to all of its methods to its child class
+
+advantages; 
+- You don't need to specify the parent class name to access its methods - can be used in both single and multiple inheritances 
+- Super function is dynamic which continues to prove how Python is a dynamic language
+
+```
+#The classes dogs, cats and horses are a subclasses of animal class - single inheritance 
+#Super function below
+class Animals: 
+	#initializing constructor 
+	def __init__(self):
+		self.legs = 4
+		self.domestic = True 
+		self.tail = True 
+		self.mammals = True 
+		
+	def isMammal(self):
+		if self.mammals:
+			print("It is a mammal.")
+#Dogs is a subclass of super class Animals 			
+class Dogs(Animals)
+	def __init__(self):
+		super().__init__()
+	
+	def isMammal(self):
+		super().isMammal()
+
+class Horses(Animals):
+	def __init__(self):
+		super().__init__()
+		
+	def hasTailandLegs(self):
+		if self.tail and self.legs == 4:
+			print("Has legs and tail")
+			
+#Driver code 
+Tom = Dogs()
+Tom.isMammal()
+Bruno = Horses()
+Bruno.hasTailandLegs 
+```
+
+Syntax: from typing import Union 
 
 
