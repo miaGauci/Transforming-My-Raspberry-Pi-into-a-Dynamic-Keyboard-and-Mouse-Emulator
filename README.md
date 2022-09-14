@@ -117,5 +117,39 @@ HelloWorld.hello()
 #Printing the path of the HelloWorld file 
 print(HelloWorld.__file__)
 ```
+__new__ method
+- Creates and returns the instance of a class
+- __new__ method is a static method 
+- It is required to pass a parameter cls 
+- cls represents the class that is needed to be instantiated and the compiler automatically provides this parameter at the time of instantiaiton
+- Using the cls keyword, we can only access the members of the class, whereas using the self keyword, we can access both the instance variables and the class attributes.
+```
+class Students(object):
+	def __init__(self, idNo, grade):
+		self._idNo = idNo
+		self._grade = grade
+
+	def __new__(cls, idNo, grade):
+		print("Creating Instance")
+		instance = super(Students, cls).__new__(cls)
+		if 5 <= grade <= 10:
+			return instance
+		else:
+			return None
+
+	def __str__(self):
+		return '{0}({1})'.format(self.__class__.__name__, self.__dict__)
+
+
+stud1 = Students(1, 7)
+print(stud1)
+
+stud2 = Students(2, 12)
+print(stud2)
+
+```
+Syntax: super()
+
+Return : Return a proxy object which represents the parent’s class.
 
 
