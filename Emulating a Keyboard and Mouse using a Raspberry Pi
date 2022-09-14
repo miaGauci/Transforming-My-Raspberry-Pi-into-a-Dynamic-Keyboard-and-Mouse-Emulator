@@ -58,7 +58,9 @@ def __init__(self):
 def left_click(self):
 #Note we still add the last 0 although it is unneccassary since the pi is programmed like that and it expects an input for that bit
   send_mouse_event(self.dev, 0x01, 0, 0, 0, 0)
-  #__delay is initialised at the top
-  time.sleep(__delay)
+  #or use the line time.sleep(Mouse__delay) where delay is initialised at the top (where Mouse is the class )
+  #the __ are to create a local variable to the class 
+  time.sleep(0.01)
+  send_mouse_event(self.dev, 0x00, 0, 0, 0, 0)
   
 ```
