@@ -245,4 +245,19 @@ Bruno.hasTailandLegs
 
 Syntax: from typing import Union 
 
+## Global keyword 
+**global** variable belongs to the global scope of the class 
 
+##Socket Class 
+
+### .gethostname 
+returns the host name of the current system under which the Python interpreter is executed 
+```
+# Local host name
+myHostName = socket.gethostname()
+print("Name of the localhost is {}".format(myHostName))
+
+#IP address of the local host 
+myIP = socket.gethostbyname(myHostName)
+print("IP address of the localhost is {}".format(myIP))
+```
