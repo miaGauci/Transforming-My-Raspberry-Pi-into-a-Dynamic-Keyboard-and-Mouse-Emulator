@@ -4,6 +4,20 @@ Python Notes and Examples
 ### Definitions 
 - Module; a program that can be imported to other programs, so that the fucntions and operations defined in the module can be reused in another program 
 
+## Python Classes 
+
+**import numpy**
+**import pandas**
+Used for working with data sets - analyzing, cleaning, exploring and manipulation of data 
+
+
+**import re**
+**import os**
+**import glob**
+**import atexit**
+
+
+.append function is used to increase the number of elements in a fuction - to add a statement to a statement
 ```
 #Class 1 
 def printsmth():
